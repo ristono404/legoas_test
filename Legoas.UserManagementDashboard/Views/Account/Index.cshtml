@@ -1,0 +1,133 @@
+﻿@model List<Legoas.Model.objects.AccountListModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">List Account</h3>
+                <div style="float: right; margin-right: -.625rem">
+                    <a href="@Url.Action("Create","Account")" class="btn btn-success">
+                        <i class="fas fa-plus"></i>  Register new account
+                    </a>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>FullName</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>ZipCode</th>
+                            <th>Province</th>
+                            <th>Branchs</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{int no = 1;}
+                        @foreach (var account in Model)
+                        {
+                            <tr>
+                                <td>@no</td>
+                                <td>@account.FullName</td>
+                                <td>@account.UserName</td>
+                                <td>@account.Email</td>
+                                <td>@account.Address</td>
+                                <td>@account.ZipCode</td>
+                                <td>@account.Province</td>
+                                <td>@account.Branchs</td>
+                                <td>
+                                    <a href="@Url.Action("Edit/"+account.ID,"Account")" class="btn btn-default"><i class="fas fa-gear"></i> Settings</a>
+                                    <button type="button" class="btn btn-danger" onclick="onDelete(@account.ID)">Delete</button>
+                                </td>
+                            </tr>
+                            no++;
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>No</th>
+                            <th>FullName</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>ZipCode</th>
+                            <th>Province</th>
+                            <th>Branchs</th>
+                            <th>Action</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+
+        });
+
+
+    });
+
+    function onDelete(value) {
+            Swal.fire({
+                title: 'Are you sure to delete this?',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                denyButtonText: `No`,
+            }).then((result) => {
+                debugger
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+
+                     $.ajax({
+                        url: '@Url.Action("Delete/", "Account")' + value,
+                        type: "GET",
+                        success: function (result) {
+                            if (result.StatusCode != "200") {
+                                toastr.error(result.StatusMessage)
+                            } else {
+                                toastr.success('Account deleted')
+                                setTimeout(function () {
+                                    window.location.reload() //will redirect to your blog page (an ex: blog.html)
+                                }, 1000); //will call the function after 2 secs.
+                            }
+                        },
+                        error: function (errormessage) {
+                            toastr.error(errormessage)
+                        }
+                    });
+
+                } else if (result.isDenied) {
+                    Swal.fire('Changes are not saved', '', 'info')
+                }
+            })
+        }
+
+</script>

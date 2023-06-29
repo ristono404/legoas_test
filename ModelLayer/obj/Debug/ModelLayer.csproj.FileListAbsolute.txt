@@ -1,0 +1,2 @@
+D:\test\lego.glints\ModelLayer\obj\Debug\ModelLayer.csproj.AssemblyReference.cache
+D:\test\lego.glints\ModelLayer\obj\Debug\ModelLayer.csproj.CoreCompileInputs.cache

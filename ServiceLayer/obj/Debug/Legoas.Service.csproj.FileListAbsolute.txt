@@ -1,0 +1,16 @@
+D:\test\lego.glints\ServiceLayer\bin\Debug\ServiceLayer.dll.config
+D:\test\lego.glints\ServiceLayer\bin\Debug\ServiceLayer.dll
+D:\test\lego.glints\ServiceLayer\bin\Debug\ServiceLayer.pdb
+D:\test\lego.glints\ServiceLayer\bin\Debug\DataLayer.dll
+D:\test\lego.glints\ServiceLayer\bin\Debug\ModelLayer.dll
+D:\test\lego.glints\ServiceLayer\bin\Debug\EntityFramework.dll
+D:\test\lego.glints\ServiceLayer\bin\Debug\DataLayer.pdb
+D:\test\lego.glints\ServiceLayer\bin\Debug\DataLayer.dll.config
+D:\test\lego.glints\ServiceLayer\bin\Debug\ModelLayer.pdb
+D:\test\lego.glints\ServiceLayer\bin\Debug\ModelLayer.dll.config
+D:\test\lego.glints\ServiceLayer\bin\Debug\EntityFramework.xml
+D:\test\lego.glints\ServiceLayer\obj\Debug\Legoas.Service.csproj.AssemblyReference.cache
+D:\test\lego.glints\ServiceLayer\obj\Debug\Legoas.Service.csproj.CoreCompileInputs.cache
+D:\test\lego.glints\ServiceLayer\obj\Debug\Legoas.Service.csproj.CopyComplete
+D:\test\lego.glints\ServiceLayer\obj\Debug\ServiceLayer.dll
+D:\test\lego.glints\ServiceLayer\obj\Debug\ServiceLayer.pdb

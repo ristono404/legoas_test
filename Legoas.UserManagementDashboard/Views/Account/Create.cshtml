@@ -1,0 +1,436 @@
+﻿@{
+    ViewBag.Title = "Create";
+    var roles = ViewBag.ListRole as List<Legoas.Model.Entities.Role>;
+    var navigation = ViewBag.ListNavigation as List<Legoas.Model.Entities.Navigation>;
+    var branchs = ViewBag.ListBranch as List<Legoas.Model.Entities.Branch>;
+}
+
+<div class="row">
+
+
+    <div class="modal fade" id="modal-nav" data-id="">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">List Navigation</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Navigation</label>
+                        <div class="row">
+                            <div class="col-9">
+                                <select class="form-control" id="opt-nav">
+                                    @foreach (var item in navigation)
+                                    {
+                                        <option value="@item.ID">@item.Name</option>
+                                    }
+
+                                </select>
+                                <p class="text-danger" id="nav-is-exists" hidden>navigation already added</p>
+                            </div>
+                            <div class="col-3">
+                                <button class="btn btn-default" id="btn-add-nav" >add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-- left column -->
+    <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Form add account</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Fullname</label>
+                        <input type="text" class="form-control" id="txt-fullname" placeholder="Enter  fullname">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Username</label>
+                        <input type="text" class="form-control" id="txt-username" placeholder="Enter username">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Password</label>
+                        <input type="password" class="form-control" id="txt-password" placeholder="Enter password">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email</label>
+                        <input type="email" class="form-control" id="txt-email" placeholder="Enter email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Address</label>
+                        <input type="text" class="form-control" id="txt-address" placeholder="Enter address">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Zipcode</label>
+                        <input type="text" class="form-control" id="txt-zipcode" placeholder="Enter Zipcode">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Province</label>
+                        <input type="text" class="form-control" id="txt-province" placeholder="Enter province">
+                    </div>
+
+                    <hr />
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Branch</label>
+                        <div class="row">
+                            <div class="col-7">
+                                <select class="form-control" id="opt-branch">
+                                    @foreach (var item in branchs)
+                                    {
+                                        <option value="@item.ID">@item.Name</option>
+                                    }
+
+                                </select>
+                            </div>
+                            <div class="col-2">
+                                <button type="button" class="btn btn-default" id="btn-add-branch">add branch</button>
+                            </div>
+                            <div class="col-3">
+                                <p class="text-danger" id="branch-is-exists" hidden>branch already added</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 table-responsive">
+                                <table class="table table-striped" id="tbl-branch">
+                                    <thead>
+                                        <tr>
+                                            <th>Branch name</th>
+                                            <th>#</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-id="@branchs[0].ID">
+                                            <td>@branchs[0].Name</td>
+                                            <td><button type="button" class="btn btn-danger btn-sm" onclick="removeBranch(this)">remove</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Role</label>
+                        <div class="row">
+                            <div class="col-7">
+                                <select class="form-control" id="opt-role">
+                                    @foreach (var item in roles)
+                                    {
+                                        <option value="@item.ID">@item.Name</option>
+                                    }
+
+                                </select>
+                            </div>
+                            <div class="col-2">
+                                <button type="button" class="btn btn-default" id="btn-add-role">add role</button>
+                            </div>
+                            <div class="col-3">
+                                <p class="text-danger" id="role-is-exists" hidden>role already added</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" id="dv-role">
+                        <table class="table table-bordered" data-role-id="@roles[0].ID" id="tbl-role-@roles[0].ID">
+                            <thead>
+                                <tr>
+                                    <th colspan="5">@roles[0].Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Navigation</th>
+                                    <th>Create</th>
+                                    <th>Read</th>
+                                    <th>Update</th>
+                                    <th>Delete</th>
+                                </tr>
+                                <!-- Default -->
+                                <tr data-id="@navigation[0].ID">
+                                    <td>
+                                        @navigation[0].Name
+                                    </td>
+                                    <td>
+                                        <input value="create" type="checkbox">
+                                    </td>
+                                    <td>
+                                        <input value="read" type="checkbox">
+                                    </td>
+                                    <td>
+                                        <input value="update" type="checkbox">
+                                    </td>
+                                    <td>
+                                        <input value="delete" type="checkbox">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5" align="center">
+
+                                        <button type="button" class="btn btn-default btn-sm" onclick="showListNavigation(@roles[0].ID)">add navigation</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <!-- /.card-body -->
+
+
+                <div class="card-footer">
+
+                    <button type="button" id="btn-save" class="btn btn-primary">Save</button>
+                    <a href="@Url.Action("Index","Account")" class="btn btn-default float-right ">Cancel</a>
+                </div>
+            </form>
+        </div>
+        <!-- /.card -->
+
+
+    </div>
+    <!--/.col (left) -->
+    <!-- right column -->
+</div>
+<!-- /.row -->
+
+
+
+<script>
+
+    function removeBranch(e) {
+        debugger
+        var tr = $('#tbl-branch tbody tr')
+        var length = tr.length
+        if (length == 1) {
+            toastr.error("At least added one branch!")
+            return
+        }
+        $(e).parent().parent().remove()
+    }
+
+     $('#btn-add-branch').click(function (e) {
+
+         var optId = $('#opt-branch').find(":selected").val()
+         var optText = $('#opt-branch').find(":selected").text()
+
+        var tr = $('#tbl-branch tbody tr')
+        var length = tr.length
+
+        for (let index = 1; index < length - 1; index++) {
+            if ($(tr[index]).attr('data-id') == optId) {
+                $('#branch-is-exists').removeAttr("hidden");
+                setTimeout(function () {
+                    $('#branch-is-exists').attr("hidden", "");
+                }, 1000)
+
+                return
+            }
+        }
+
+        var rowAppend = `
+                 <tr data-id="`+ optId +`">
+                                            <td>`+ optText +`</td>
+                                            <td><button type="button" class="btn btn-danger btn-sm" onclick="removeBranch(this)">remove</button></td>
+                                        </tr>
+          `
+         $('#tbl-branch tbody tr:last').before(rowAppend)
+    })
+
+    $('#btn-add-role').click(function (e) {
+        var roleId = $('#opt-role').find(":selected").val()
+        var roleText = $('#opt-role').find(":selected").text()
+
+        if ($('#tbl-role-' + roleId).length > 0) {
+            $('#role-is-exists').removeAttr("hidden");
+            setTimeout(function (){
+                $('#role-is-exists').attr("hidden", "");
+            }, 1000)
+
+            return
+        }
+
+        var table = `<table class="table table-bordered" data-role-id=` + roleId +` id="tbl-role-` + roleId +`">
+                            <thead>
+                                <tr>
+                                    <th colspan="5">`+roleText+`</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Navigation</th>
+                                    <th>Create</th>
+                                    <th>Read</th>
+                                    <th>Update</th>
+                                    <th>Delete</th>
+                                </tr>
+                                <!-- Default -->
+                                <tr data-id="@navigation[0].ID">
+                                    <td>
+                                        @navigation[0].Name
+                                    </td>
+                                    <td>
+                                        <input value="create" type="checkbox">
+                                    </td>
+                                    <td>
+                                        <input value="read" type="checkbox">
+                                    </td>
+                                    <td>
+                                        <input value="update" type="checkbox">
+                                    </td>
+                                    <td>
+                                        <input value="delete" type="checkbox">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5" align="center">
+
+                                        <button type="button" class="btn btn-default btn-sm" onclick="showListNavigation(`+roleId+`)">add navigation</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>`
+        debugger
+        $('#dv-role').append(table);
+    })
+
+
+    function showListNavigation(id) {
+        $('#modal-nav').modal('show');
+        $('#modal-nav').attr("data-id", id)
+    }
+    $('#btn-add-nav').click(function (e) {
+        debugger
+        var id = $('#modal-nav').attr("data-id")
+        var optId = $('#opt-nav').find(":selected").val()
+        var optText = $('#opt-nav').find(":selected").text()
+
+        var tr = $('#tbl-role-' + id + ' tbody tr')
+        var length = tr.length
+
+        for (let index = 1; index < length - 1; index++) {
+            if ($(tr[index]).attr('data-id') == optId) {
+                $('#nav-is-exists').removeAttr("hidden");
+                setTimeout(function () {
+                    $('#nav-is-exists').attr("hidden", "");
+                }, 1000)
+
+                return
+            }
+        }
+
+        var rowAppend = `
+                 <tr data-id=`+ optId +`>
+                     <td>
+                         `+ optText + `
+                     </td>
+                     <<td>
+                          <input value="create" type="checkbox">
+                      </td>
+                      <td>
+                          <input value="read" type="checkbox">
+                      </td>
+                      <td>
+                          <input value="update" type="checkbox">
+                      </td>
+                      <td>
+                          <input value="delete" type="checkbox">
+                      </td>
+                 </tr>
+          `
+        $('#tbl-role-' + id + ' tbody tr:last').before(rowAppend)
+    })
+    $('#btn-save').click(function () {
+
+        var branchMap = [];
+        var branchTr = $('#tbl-branch tbody tr')
+        for (let index = 0; index < branchTr.length; index++) {
+            branchMap.push({ BranchID: $(branchTr[index]).attr('data-id') })
+        }
+
+        var accountRoleMappings = []
+        var tblRole = $('#dv-role table')
+        for (let index = 0; index < tblRole.length; index++) {
+            var navigation = []
+
+            var tr = $(tblRole[index]).find('tbody tr')
+            var length = tr.length
+            for (let index = 1; index < length - 1; index++) {
+                var privChecked = $(tr[index]).find('td input:checked');
+                var priv = ''
+                for (let index = 0; index < privChecked.length; index++) {
+                    priv += $(privChecked[index]).val() + '|'
+                }
+
+                if (priv.length == 0) {
+                    toastr.error("At least choose one privilege!")
+                    return;
+                }
+                
+                   priv = priv.slice(0, -1);
+                
+                navigation.push({
+                    NavigationID: $(tr[index]).attr('data-id'),
+                    Privilege: priv
+                })
+            }
+
+            objRole = {
+                RoleID: $(tblRole[index]).attr("data-role-id"),
+                AccountRoleNavigationMappings: navigation
+            }
+            accountRoleMappings.push(objRole)
+        }
+        var branchObj = {
+            FullName: $("#txt-fullname").val(),
+            UserName: $("#txt-username").val(),
+            Password: $("#txt-password").val(),
+            Email: $("#txt-email").val(),
+            Address: $("#txt-address").val(),
+            Zipcode: $("#txt-zipcode").val(),
+            Province: $("#txt-province").val(),
+            AccountBranchMappings: branchMap,
+            AccountRoleMappings: accountRoleMappings
+        }
+        $.ajax({
+            url: '@Url.Action("Create","Account")',
+            data: JSON.stringify(branchObj),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                if (result.StatusCode != "200") {
+                    toastr.error(result.StatusMessage)
+                } else {
+                    toastr.success('Account added')
+                    setTimeout(function () {
+                        window.location.href = '@Url.Action("Index","Account")' //will redirect to your blog page (an ex: blog.html)
+                    }, 1000); //will call the function after 2 secs.
+                }
+            },
+            error: function (errormessage) {
+                toastr.error(errormessage)
+            }
+        });
+    })
+</script>

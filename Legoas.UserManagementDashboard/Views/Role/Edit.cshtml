@@ -1,0 +1,70 @@
+﻿@model Legoas.Model.objects.RoleModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-6">
+        <!-- general form elements -->
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Form edit role</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Branch name</label>
+                        <input type="text" class="form-control" value="@Model.RoleName" id="txt-role-name" placeholder="Enter branch name">
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+
+                    <button type="button" id="btn-save" class="btn btn-primary">Save</button>
+                    <a href="@Url.Action("Index","Role")" class="btn btn-default float-right ">Cancel</a>
+                </div>
+            </form>
+        </div>
+        <!-- /.card -->
+
+
+    </div>
+    <!--/.col (left) -->
+    <!-- right column -->
+</div>
+<!-- /.row -->
+
+<script>
+    $('#btn-save').click(function () {
+
+        var branchObj = {
+            ID : @Model.ID,
+            RoleName: $("#txt-role-name").val()
+        }
+        $.ajax({
+            url: '@Url.Action("Edit","Role")',
+            data: JSON.stringify(branchObj),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                if (result.StatusCode != "200") {
+                    toastr.error(result.StatusMessage)
+                } else {
+                    toastr.success('Role updated')
+                    setTimeout(function () {
+                        window.location.href = '@Url.Action("Index","Role")' //will redirect to your blog page (an ex: blog.html)
+                    }, 1000); //will call the function after 2 secs.
+                }
+            },
+            error: function (errormessage) {
+                toastr.error(errormessage)
+            }
+        });
+    })
+</script>

@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "Create";
+}
+
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-6">
+        <!-- general form elements -->
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Form add navigation</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Navigation name</label>
+                        <input type="text" class="form-control" id="txt-navigation-name" placeholder="Enter navigation name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Controller name</label>
+                        <input type="text" class="form-control" id="txt-controller-name" placeholder="Enter controller name">
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+
+                    <button type="button" id="btn-save" class="btn btn-primary">Save</button>
+                    <a  href="@Url.Action("Index","Navigation")" class="btn btn-default float-right ">Cancel</a>
+                </div>
+            </form>
+        </div>
+        <!-- /.card -->
+     
+
+    </div>
+    <!--/.col (left) -->
+    <!-- right column -->
+</div>
+<!-- /.row -->
+
+<script>
+    $('#btn-save').click(function () {
+
+        var branchObj = {
+            NavigationName: $("#txt-navigation-name").val(),
+            ControllerName: $("#txt-controller-name").val(),
+        }
+        $.ajax({
+            url: '@Url.Action("Create","Navigation")',
+            data: JSON.stringify(branchObj),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                if (result.StatusCode != "200") {
+                    toastr.error(result.StatusMessage)
+                } else {
+                    toastr.success('Navigation added')
+                    setTimeout(function () {
+                        window.location.href = '@Url.Action("Index","Navigation")' //will redirect to your blog page (an ex: blog.html)
+                    }, 1000); //will call the function after 2 secs.
+                }
+            },
+            error: function (errormessage) {
+                toastr.error(errormessage)
+            }
+        });
+    })
+</script>

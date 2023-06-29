@@ -1,0 +1,15 @@
+D:\test\lego.glints\DataLayer\bin\Debug\DataLayer.dll.config
+D:\test\lego.glints\DataLayer\bin\Debug\DataLayer.dll
+D:\test\lego.glints\DataLayer\bin\Debug\DataLayer.pdb
+D:\test\lego.glints\DataLayer\bin\Debug\EntityFramework.dll
+D:\test\lego.glints\DataLayer\bin\Debug\EntityFramework.SqlServer.dll
+D:\test\lego.glints\DataLayer\bin\Debug\ModelLayer.dll
+D:\test\lego.glints\DataLayer\bin\Debug\ModelLayer.pdb
+D:\test\lego.glints\DataLayer\bin\Debug\ModelLayer.dll.config
+D:\test\lego.glints\DataLayer\bin\Debug\EntityFramework.xml
+D:\test\lego.glints\DataLayer\bin\Debug\EntityFramework.SqlServer.xml
+D:\test\lego.glints\DataLayer\obj\Debug\Legoas.Data.csproj.AssemblyReference.cache
+D:\test\lego.glints\DataLayer\obj\Debug\Legoas.Data.csproj.CoreCompileInputs.cache
+D:\test\lego.glints\DataLayer\obj\Debug\Legoas.Data.csproj.CopyComplete
+D:\test\lego.glints\DataLayer\obj\Debug\DataLayer.dll
+D:\test\lego.glints\DataLayer\obj\Debug\DataLayer.pdb

@@ -1,0 +1,5 @@
+D:\test\lego.glints\Data\obj\Debug\net6.0\Legoas.Data.csproj.AssemblyReference.cache
+D:\test\lego.glints\Data\obj\Debug\net6.0\Legoas.Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\test\lego.glints\Data\obj\Debug\net6.0\Legoas.Data.AssemblyInfoInputs.cache
+D:\test\lego.glints\Data\obj\Debug\net6.0\Legoas.Data.AssemblyInfo.cs
+D:\test\lego.glints\Data\obj\Debug\net6.0\Legoas.Data.csproj.CoreCompileInputs.cache
